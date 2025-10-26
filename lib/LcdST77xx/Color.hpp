@@ -11,8 +11,9 @@ class	Color
 {
 public:
 	static	constexpr	uint8_t	Length = 2;
-	static	Color	CreateRGB565(uint8_t red, uint8_t green, uint8_t blue);
+	uint8_t	Bytes[Length];
 
 	Color(void) {}
-	uint8_t	bytes[Length];
+	Color(uint8_t red, uint8_t green, uint8_t blue) { SetRGB565(red, green, blue); }
+	void	SetRGB565(uint8_t red, uint8_t green, uint8_t blue);
 };

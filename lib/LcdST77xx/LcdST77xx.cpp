@@ -84,6 +84,7 @@ LcdST77xx::LcdST77xx(void)
 void	LcdST77xx::Initialize(void)
 {
 	using	namespace	ST77xxConfig;
+	Text::Initialize(screenWidth, screenHeight);
 
 	//SPIバス占有（以下に長時間の時間待ちを含むが、setup()時なら他のSPI利用デバイスへの影響は小さい）
 	glcd.BeginTransaction();
@@ -134,6 +135,7 @@ void	LcdST77xx::RotateFlip(ERotFlip param)
 	glcd.SendCommand(CmdMADCTL, static_cast<uint8_t>(param));
 	glcd.EndTransaction();
 	if (param & ERotFlip::Rot90) { std::swap(screenWidth, screenHeight); }
+	Text::SetTextScreen(screenWidth, screenHeight);
 }
 
 //データ書込み先のGRAM領域を設定する
@@ -149,7 +151,7 @@ void	LcdST77xx::SetGRamArea(int16_t x, int16_t y, int16_t w, int16_t h)
 void	LcdST77xx::FillRect(int16_t x, int16_t y, int16_t w, int16_t h, const Color& color)
 {
 	size_t dataLength = w * Color::Length;
-	for (size_t i = 0; i < dataLength; i += Color::Length) { memcpy(&grBuffer[i], color.bytes, Color::Length); }
+	for (size_t i = 0; i < dataLength; i += Color::Length) { memcpy(&grBuffer[i], color.Bytes, Color::Length); }
 
 	glcd.BeginTransaction();
 	SetGRamArea(x, y, w, h);

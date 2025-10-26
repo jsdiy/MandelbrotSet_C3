@@ -8,6 +8,7 @@
 #include <Arduino.h>
 #include "Color.hpp"
 #include "GLcdSpiDma.hpp"
+#include "Text.hpp"
 
 //ユーザー設定
 namespace	ST77xxConfig
@@ -48,7 +49,7 @@ enum	class	ERotFlip	: uint8_t
 };
 
 //グラフィックLCDクラス
-class	LcdST77xx	//: public Graphics
+class	LcdST77xx	: public Text
 {
 private:
 	static	constexpr	uint8_t		SpiMode = 0;	//SPIモード(0-3)
