@@ -37,9 +37,9 @@ HwSwitch	&swV = swA, &swH = swB;	//Vertical, Horizon
 HwSwitch	&swZmIn = swA, &swZmOut = swB;	//Zoom-in/out
 
 //色
-static	Color	foreColor = Color::CreateRGB565(0xFF, 0xFF, 0xFF);
-static	Color	bgColor = Color::CreateRGB565(0x00, 0x00, 0x00);
-static	Color	colBreak = Color::CreateRGB565(0xFF, 0xFF, 0x00);
+static	Color	foreColor = Color(0xFF, 0xFF, 0xFF);
+static	Color	bgColor = Color(0x00, 0x00, 0x00);
+static	Color	colBreak = Color(0xFF, 0xFF, 0x00);
 
 //定数
 static	constexpr	gpio_num_t	GpioSwA = GPIO_NUM_1;
@@ -47,7 +47,7 @@ static	constexpr	gpio_num_t	GpioSwB = GPIO_NUM_2;
 static	constexpr	int8_t	GridSize = 8;	//カーソル移動格子の大きさ
 
 //変数
-static	EOpMode	opMode;	//OperationMode
+static	volatile	EOpMode	opMode;	//OperationMode
 static	int16_t	cursorX, cursorY;	//画面座標
 static	bool	isCursorMove;
 static	volatile	bool	isDrawBreak;
@@ -62,6 +62,7 @@ static	void	MoveCursorV(void);
 //割り込み
 void	IRAM_ATTR	OnButton(void)
 {
+	if (opMode != EOpMode::Drawing) { return; }
 	isDrawBreak = true;
 	mandelbrot.StopDrawing();
 }
