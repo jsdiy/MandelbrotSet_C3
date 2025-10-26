@@ -48,6 +48,7 @@ private:
 	void	SetComplexPlane(float centerX, float centerY, uint8_t level);
 	float	MappingToRe(int16_t screenX);
 	float	MappingToIm(int16_t screenY);
+	void	PrintInfo(void);
 
 public:
 	MandelbrotSet(void) { lcd = nullptr; }

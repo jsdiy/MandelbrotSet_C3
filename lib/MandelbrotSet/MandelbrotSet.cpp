@@ -3,6 +3,7 @@
 //	2025/10
 
 #include <Arduino.h>
+#include <sstream>
 #include "MandelbrotSet.hpp"
 
 volatile	bool	reqDrawStop;
@@ -53,7 +54,7 @@ void	MandelbrotSet::Draw(void)
 
 			//反復回数を色に変換する
 			ToRGB565(iter, &color);
-			memcpy(&lineBuffer[x * Color::Length], color.bytes, Color::Length);
+			memcpy(&lineBuffer[x * Color::Length], color.Bytes, Color::Length);
 		}
 
 		lcd->DrawImage(0, y, lcd->Width(), 1, lineBuffer, bufLength);
@@ -94,8 +95,8 @@ void	MandelbrotSet::ToRGB565(int16_t iterCount, Color* color)
 		}
 	}
 
-	color->bytes[0] = (colorBits >> 8) & 0xFF;
-	color->bytes[1] = colorBits & 0xFF;
+	color->Bytes[0] = (colorBits >> 8) & 0xFF;
+	color->Bytes[1] = colorBits & 0xFF;
 }
 
 //計算の中心位置を指定する
@@ -165,4 +166,23 @@ void	MandelbrotSet::SetComplexPlane(float centerX, float centerY, uint8_t level)
 	for (int16_t y = 0; y < lcd->Height(); y++) { bBuf[y] = MappingToIm(y); }
 
 	Serial.printf("Lv:%d C(%f,%f) Re[%f,%f] Im[%f,%f]\n", level, centerX, centerY, minX, maxX, minY, maxY);
+	PrintInfo();
+}
+
+//描画情報を出力する
+void	MandelbrotSet::PrintInfo(void)
+{
+	std::string (*fS)(float) = std::to_string;
+	std::string (*iS)(int) = std::to_string;
+
+	auto sLevel = "Lv:" + iS(level);
+	auto sCenter = "C:(" + fS(centerX) + "," + fS(centerY) + ")";
+	auto sRePart = "Re:[" + fS(minX) + "," + fS(maxX) + "]";
+	auto sImPart = "Im:[" + fS(minY) + "," + fS(maxY) + "]";
+
+	std::string infos[] = { sLevel, sCenter, sRePart, sImPart };
+	for (uint8_t i = 0; i < 4; i++)
+	{
+		lcd->DrawString(lcd->PointX(0), lcd->PointY(12 + i), infos[i].c_str());
+	}
 }
