@@ -48,9 +48,9 @@ static	constexpr	int8_t	GridSize = 8;	//カーソル移動格子の大きさ
 
 //変数
 static	volatile	EOpMode	opMode;	//OperationMode
+static	volatile	bool	isDrawBreak;
 static	int16_t	cursorX, cursorY;	//画面座標
 static	bool	isCursorMove;
-static	volatile	bool	isDrawBreak;
 
 //関数
 static	void	DrawFrame(Color& color);
@@ -83,7 +83,6 @@ void	setup(void)
 
 	mandelbrot.Initialize(&lcd);
 
-	isCursorMove = false;
 	opMode = EOpMode::DrawingReady;
 }
 
