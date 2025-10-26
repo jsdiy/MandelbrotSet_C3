@@ -36,3 +36,4 @@ ESP32-C3でマンデルブロ集合を描画するお遊びアプリです。
 
 ## サンプル画像
 ![サンプル](https://github.com/jsdiy/MandelbrotSet_C3/blob/main/sample/IMG_20251015_165650.jpg)
+![サンプル](https://github.com/jsdiy/MandelbrotSet_C3/blob/main/sample/IMG_20251019_000141.jpg)
