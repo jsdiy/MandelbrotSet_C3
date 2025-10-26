@@ -2,8 +2,8 @@
 
 ## 概要
 ESP32-C3でマンデルブロ集合を描画するお遊びアプリです。
-万華鏡のように、ずーっと（ぼーっと）楽しめます。  
-https://github.com/jsdiy/MandelbrotSet_C3/blob/main/sample/IMG_20251019_000141.jpg
+万華鏡のように、ずーっと（ぼーっと）楽しめます。
+![サンプル](https://github.com/jsdiy/MandelbrotSet_C3/blob/main/sample/IMG_20251019_000141.jpg)
 
 ## 特徴
 - 160x128ピクセルで描画時間は20～30秒です。
