@@ -176,9 +176,9 @@ void	MandelbrotSet::PrintInfo(void)
 	std::string (*iS)(int) = std::to_string;
 
 	auto sLevel = "Lv:" + iS(level);
-	auto sCenter = "C:(" + fS(centerX) + "," + fS(centerY) + ")";
-	auto sRePart = "Re:[" + fS(minX) + "," + fS(maxX) + "]";
-	auto sImPart = "Im:[" + fS(minY) + "," + fS(maxY) + "]";
+	auto sCenter = "C(" + fS(centerX) + "," + fS(centerY) + ")";
+	auto sRePart = "Re[" + fS(minX) + "," + fS(maxX) + "]";
+	auto sImPart = "Im[" + fS(minY) + "," + fS(maxY) + "]";
 
 	std::string infos[] = { sLevel, sCenter, sRePart, sImPart };
 	for (uint8_t i = 0; i < 4; i++)
