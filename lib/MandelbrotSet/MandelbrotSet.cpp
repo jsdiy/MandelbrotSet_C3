@@ -1,12 +1,9 @@
-//マンデルブロー集合
+//マンデルブロ集合
 //『昼夜逆転』工作室	@jsdiy	https://github.com/jsdiy
 //	2025/10
 
 #include <Arduino.h>
-#include <sstream>
 #include "MandelbrotSet.hpp"
-
-volatile	bool	reqDrawStop;
 
 //初期化
 void	MandelbrotSet::Initialize(LcdST77xx* lcd)
