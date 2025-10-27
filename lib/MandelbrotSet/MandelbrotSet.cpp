@@ -45,7 +45,7 @@ void	MandelbrotSet::Draw(void)
 		float b = bBuf[y];	//c=a+biのb
 		for (int16_t x = 0; x < lcd->Width(); x++)
 		{
-			//マンデルブロー集合の計算
+			//マンデルブロ集合の計算
 			float a = aBuf[x];	//c=a+biのa
 			int16_t iter = Iterate(a, b);
 
@@ -61,10 +61,10 @@ void	MandelbrotSet::Draw(void)
 	Serial.printf("msec=%lu\n", millis() - msStart);
 }
 
-//マンデルブロー集合を反復計算する
+//マンデルブロ集合を反復計算する
 int16_t	MandelbrotSet::Iterate(float a, float b)
 {
-	// マンデルブロー集合の計算
+	// マンデルブロ集合の計算
 	float x = 0.0f, y = 0.0f;	//z[0] = 0
 	int16_t iter;
 	for (iter = 0; iter < IterMax; iter++)
