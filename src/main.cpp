@@ -6,12 +6,12 @@
 			ESP32-C3
 SPI-SS		GPIO_NUM_10
 SPI-MOSI	GPIO_NUM_7
-SPI-MISO	GPIO_NUM_2
+SPI-MISO	GPIO_NUM_2	未使用
 SPI-SCK		GPIO_NUM_6
 LCD-DC		GPIO_NUM_4
 LCD-RESET	GPIO_NUM_NC
 SW-A		GPIO_NUM_1
-SW-B		GPIO_NUM_2
+SW-B		GPIO_NUM_3
 */
 
 #include <Arduino.h>
@@ -43,7 +43,7 @@ static	Color	colBreak = Color(0xFF, 0xFF, 0x00);
 
 //定数
 static	constexpr	gpio_num_t	GpioSwA = GPIO_NUM_1;
-static	constexpr	gpio_num_t	GpioSwB = GPIO_NUM_2;
+static	constexpr	gpio_num_t	GpioSwB = GPIO_NUM_3;
 static	constexpr	int8_t	GridSize = 8;	//カーソル移動格子の大きさ
 
 //変数
